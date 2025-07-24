@@ -1,3 +1,6 @@
+<img width="839" height="389" alt="image" src="https://github.com/user-attachments/assets/4c2e36d1-f34a-483c-ba19-00fa9adb86bb" />
+
+
 # OrientAi
 🚀 PASO A PASO PARA SUBIR TODO EL PROYECTO ORIENTAI DESDE CERO
 ✅ 1. Iniciar Minikube desde cero con más memoria
