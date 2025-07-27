@@ -19,4 +19,4 @@ ${lista}
 `.trim();
 }
 
-module.exports = construirPrompt; // <- ✅ Esto debe estar al final
+module.exports = construirPrompt; //
