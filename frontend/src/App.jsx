@@ -1,31 +1,26 @@
-import React from 'react';
-import { createTheme, ThemeProvider, CssBaseline, Container } from '@mui/material';
-import TestVocacional from './components/TestVocacional';
+import React, { useState } from 'react';
+import { ThemeProvider, CssBaseline } from '@mui/material';
+import { theme } from './theme'; // Usamos el tema estilo Mentimeter
+import EstudianteForm from './components/EstudianteForm';
+import QuestionView from './components/QuestionView';
 
-// 1. Creamos un tema oscuro minimalista.
-// Puedes personalizar colores, tipografía y más aquí.
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: '#90caf9', // Un azul suave para los elementos principales
-    },
-    background: {
-      default: '#121212', // Un fondo oscuro profundo
-      paper: '#1e1e1e',   // El color para superficies como las 'Cards'
-    },
-  },
-  typography: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-  },
-});
 
 function App() {
+  const [estudiante, setEstudiante] = useState(null);
+
+  const handleRegistro = (datosEstudiante) => {
+    console.log('Estudiante registrado:', datosEstudiante);
+    setEstudiante(datosEstudiante);
+  };
+
   return (
-    // 2. Aplicamos el tema y reseteamos los estilos base del navegador
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
-      <TestVocacional />
+      {!estudiante ? (
+        <EstudianteForm onRegistro={handleRegistro} />
+      ) : (
+        <QuestionView user={estudiante} />
+      )}
     </ThemeProvider>
   );
 }

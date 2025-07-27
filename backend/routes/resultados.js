@@ -34,8 +34,9 @@ router.get('/:id', async (req, res) => {
     res.json({ respuesta: respuestaIA.trim() });
 
   } catch (error) {
-    console.error('❌ Error generando resultado vocacional:', error);
-    res.status(500).json({ error: 'Error interno del servidor' });
+    console.error('❌ Error generando resultado vocacional:', error.message);
+    console.error(error.stack); // para ver más detalle
+    res.status(500).json({ error: error.message });
   }
 });
 

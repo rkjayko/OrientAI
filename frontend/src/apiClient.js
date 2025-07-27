@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Centralizamos la configuración de Axios para toda la aplicación.
 const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000/api',
+  baseURL: '/api', // Usamos la ruta relativa que el proxy de Vite interceptará.
   headers: {
     'Content-Type': 'application/json',
   },
