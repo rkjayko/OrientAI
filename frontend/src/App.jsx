@@ -1,63 +1,33 @@
-import { useState } from 'react'
-import axios from 'axios'
-import EstudianteForm from './components/EstudianteForm'
-import PreguntaForm from './components/PreguntaForm'
-import ResultadoView from './components/ResultadoView'
+import React from 'react';
+import { createTheme, ThemeProvider, CssBaseline, Container } from '@mui/material';
+import TestVocacional from './components/TestVocacional';
+
+// 1. Creamos un tema oscuro minimalista.
+// Puedes personalizar colores, tipografía y más aquí.
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: '#90caf9', // Un azul suave para los elementos principales
+    },
+    background: {
+      default: '#121212', // Un fondo oscuro profundo
+      paper: '#1e1e1e',   // El color para superficies como las 'Cards'
+    },
+  },
+  typography: {
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+  },
+});
 
 function App() {
-  const [resultado, setResultado] = useState(null)
-  const [estudianteId, setEstudianteId] = useState(null)
-
-  const reiniciar = () => {
-    setResultado(null)
-    setEstudianteId(null)
-  }
-
-  const eliminarEstudiantes = async () => {
-    const confirmar = confirm("¿Estás seguro de eliminar TODOS los estudiantes?");
-    if (!confirmar) return;
-    try {
-      const res = await axios.delete('/api/estudiantes');
-      alert(res.data.mensaje);
-      reiniciar(); // Opcional: reiniciar estado del frontend
-    } catch (err) {
-      console.error("Error al eliminar estudiantes", err);
-      alert("❌ Ocurrió un error eliminando estudiantes");
-    }
-  };
-
   return (
-    <div className="App" style={{ position: 'relative', padding: '2rem' }}>
-      <h1>OrientAI - Evaluación Vocacional</h1>
-
-      {/* Botón eliminar en esquina superior derecha */}
-      <button
-        onClick={eliminarEstudiantes}
-        style={{
-          position: 'absolute',
-          top: '20px',
-          right: '20px',
-          backgroundColor: 'red',
-          color: 'white',
-          padding: '10px 15px',
-          border: 'none',
-          borderRadius: '5px',
-          cursor: 'pointer',
-          zIndex: 1000
-        }}
-      >
-        🗑 Eliminar Estudiantes
-      </button>
-
-      {resultado ? (
-        <ResultadoView resultado={resultado} onVolver={reiniciar} />
-      ) : estudianteId ? (
-        <PreguntaForm estudianteId={estudianteId} onResultado={setResultado} />
-      ) : (
-        <EstudianteForm onRegistro={setEstudianteId} />
-      )}
-    </div>
-  )
+    // 2. Aplicamos el tema y reseteamos los estilos base del navegador
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <TestVocacional />
+    </ThemeProvider>
+  );
 }
 
-export default App
+export default App;
