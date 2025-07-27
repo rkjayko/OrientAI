@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db');
 const ai = require('../ai');
-const construirPrompt = require('../ai/construirPrompt'); // ✅ agregado
+const construirPrompt = require('../ai/construirPrompt');
 
 router.get('/:id', async (req, res) => {
   const estudianteId = req.params.id;
@@ -22,7 +22,7 @@ router.get('/:id', async (req, res) => {
       return res.status(404).json({ error: 'No se encontraron respuestas para este estudiante.' });
     }
 
-    const prompt = construirPrompt(respuestas); // ✅ nuevo prompt
+    const prompt = construirPrompt(respuestas);
     console.log('📤 Prompt enviado a la IA:\n', prompt);
 
     const respuestaIA = await ai.getIAResponse(prompt);
@@ -35,7 +35,7 @@ router.get('/:id', async (req, res) => {
 
   } catch (error) {
     console.error('❌ Error generando resultado vocacional:', error.message);
-    console.error(error.stack); // para ver más detalle
+    console.error(error.stack);
     res.status(500).json({ error: error.message });
   }
 });

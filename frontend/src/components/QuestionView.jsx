@@ -3,25 +3,29 @@ import { Box, Card, CardContent, Typography, Stack, CircularProgress, Alert } fr
 import OptionButton from './OptionButton';
 import { obtenerPreguntas, enviarRespuesta, obtenerResultado } from '../services/api';
 
-const QuestionView = ({ user }) => {
+// Función para corregir la codificación de caracteres desde el frontend.
+function decodeUtf8FromLatin1(str) {
+  if (!str) return '';
+  // Convierte el string (interpretado como latin1) a bytes y luego lo decodifica como UTF-8.
+  const bytes = new Uint8Array([...str].map(c => c.charCodeAt(0)));
+  return new TextDecoder('utf-8').decode(bytes);
+}
+
+const QuestionView = ({ user, onTerminado }) => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isWaitingForResult, setIsWaitingForResult] = useState(false);
-  const [finalResult, setFinalResult] = useState(null);
 
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
         const response = await obtenerPreguntas();
-        // Asumimos que las opciones vienen como un string "Sí,No"
         const formattedQuestions = response.data.map(q => ({
           ...q,
-          texto: decodeUtf8FromLatin1(q.texto), // re-decodifica el texto dañado
-
-          // ✅ SOLUCIÓN: Si `q.opciones` no existe, usamos 'Sí,No' por defecto.
+          texto: decodeUtf8FromLatin1(q.texto), 
           options: (q.opciones || 'Sí,No').split(',').map(op => ({ id: op.trim(), texto: op.trim() }))
         }));
         setQuestions(formattedQuestions);
@@ -38,8 +42,7 @@ const QuestionView = ({ user }) => {
   const fetchFinalResult = async () => {
     try {
       const response = await obtenerResultado(user.id);
-      console.log('Preguntas recibidas:', response.data);
-      setFinalResult(response.data);
+      onTerminado(response.data);
     } catch (err) {
       console.error('Error al obtener el resultado de la IA:', err);
       setError('No se pudo generar un resultado. Intenta más tarde.');
@@ -56,7 +59,6 @@ const QuestionView = ({ user }) => {
     ];
     setAnswers(newAnswers);
 
-    // Opcional: Enviar respuesta inmediatamente
     await enviarRespuesta({ estudiante_id: user.id, pregunta_id: questionId, respuesta: optionId });
 
     const nextQuestionIndex = currentQuestionIndex + 1;
@@ -93,21 +95,6 @@ const QuestionView = ({ user }) => {
           <Typography variant="h2">🧠 Generando tu orientación...</Typography>
           <Typography variant="body1" sx={{ mt: 2 }}>Esto puede tardar unos segundos. Por favor, espera.</Typography>
           <CircularProgress sx={{ mt: 3 }} />
-        </Card>
-      </Box>
-    );
-  }
-
-  if (finalResult) {
-    return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
-        <Card sx={{ minWidth: 275, maxWidth: 700, width: '100%', p: 4 }}>
-          <CardContent>
-            <Typography variant="h2" textAlign="center">Tu Resultado de Orientación</Typography>
-            <Typography variant="body1" sx={{ mt: 3, whiteSpace: 'pre-wrap' }}>
-              {finalResult.respuesta}
-            </Typography>
-          </CardContent>
         </Card>
       </Box>
     );
@@ -153,11 +140,5 @@ const QuestionView = ({ user }) => {
     </Box>
   );
 };
-
-
-function decodeUtf8FromLatin1(str) {
-  const bytes = new Uint8Array([...str].map(c => c.charCodeAt(0)));
-  return new TextDecoder('utf-8').decode(bytes);
-}
 
 export default QuestionView;

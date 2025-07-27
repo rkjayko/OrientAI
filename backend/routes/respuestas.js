@@ -1,7 +1,7 @@
 // backend/routes/respuestas.js
 const express = require('express');
 const router = express.Router();
-const db = require('../db'); // Asegúrate de que este es tu módulo de conexión a MySQL
+const db = require('../db');
 
 // POST /api/respuestas
 router.post('/', async (req, res) => {
@@ -12,9 +12,7 @@ router.post('/', async (req, res) => {
   }
 
   try {
-    const query = `
-      INSERT INTO respuestas (estudiante_id, pregunta_id, respuesta)
-      VALUES (?, ?, ?)
+    const query = `INSERT INTO respuestas (estudiante_id, pregunta_id, respuesta) VALUES (?, ?, ?)
     `;
     await db.query(query, [estudiante_id, pregunta_id, respuesta]);
 

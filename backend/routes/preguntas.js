@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const ai = require('../ai'); // ✅ actualizado
-const db = require('../db'); // 👈 se necesita para consultar las preguntas
+const ai = require('../ai');
+const db = require('../db');
 
 // Ruta para obtener preguntas desde la base de datos
 router.get('/', async (req, res) => {

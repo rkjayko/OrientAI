@@ -2,8 +2,8 @@ const db = require('./db');
 
 // Esperar a que MySQL esté disponible antes de ejecutar queries
 async function esperarMySQL() {
-  const RETRY_INTERVAL = 500; // Aumentamos el intervalo a 2s
-  const MAX_RETRIES = 3;      // Aumentamos los reintentos a 10
+  const RETRY_INTERVAL = 500;
+  const MAX_RETRIES = 3;
 
   for (let intento = 1; intento <= MAX_RETRIES; intento++) {
     try {
