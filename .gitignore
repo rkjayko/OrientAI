@@ -25,9 +25,6 @@ Thumbs.db
 # Dependencias
 /backend/node_modules/
 
-# Variables de entorno (¡MUY IMPORTANTE PARA LA SEGURIDAD!)
-/backend/.env
-
 # ===================================================================
 # Frontend (Vite + React)
 # ===================================================================
@@ -40,7 +37,3 @@ Thumbs.db
 
 # Cache de Vite
 /frontend/.vite/
-
-# Variables de entorno locales del frontend
-/frontend/.env.local
-/frontend/.env.*.local
