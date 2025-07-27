@@ -28,14 +28,6 @@ Thumbs.db
 # Variables de entorno (¡MUY IMPORTANTE PARA LA SEGURIDAD!)
 /backend/.env
 
-# Archivos de configuración de Docker que pueden contener secretos
-/backend/docker-compose.yml
-/backend/docker-compose.override.yml
-
-# Archivos de manifiesto de Kubernetes (pueden contener secretos)
-*.yaml
-*.yml
-
 # ===================================================================
 # Frontend (Vite + React)
 # ===================================================================
