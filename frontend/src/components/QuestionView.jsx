@@ -3,10 +3,8 @@ import { Box, Card, CardContent, Typography, Stack, CircularProgress, Alert } fr
 import OptionButton from './OptionButton';
 import { obtenerPreguntas, enviarRespuesta, obtenerResultado } from '../services/api';
 
-// Función para corregir la codificación de caracteres desde el frontend.
 function decodeUtf8FromLatin1(str) {
   if (!str) return '';
-  // Convierte el string (interpretado como latin1) a bytes y luego lo decodifica como UTF-8.
   const bytes = new Uint8Array([...str].map(c => c.charCodeAt(0)));
   return new TextDecoder('utf-8').decode(bytes);
 }

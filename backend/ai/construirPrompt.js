@@ -4,19 +4,38 @@ function construirPrompt(respuestas) {
     .join('\n');
 
   return `
-Eres un orientador vocacional experto.
+Actúas como un orientador vocacional experto.
 
-Con base en las siguientes respuestas del estudiante, sugiere una carrera profesional adecuada y una justificación breve.
+Tu tarea es analizar las respuestas de un estudiante para recomendarle una carrera profesional que se ajuste a su perfil.
 
-Sigue exactamente este formato:
+Debes entregar:
+1. Una **carrera sugerida principal**.
+2. **Otras carreras relacionadas** que podría considerar.
+3. Una **justificación detallada** basada en sus respuestas.
+4. Las **3 mejores universidades en Colombia** para estudiar esa carrera.
+5. Algunos **posibles empleos o roles** a los que podría aspirar.
 
-Carrera sugerida: Ingeniería de Sistemas  
-Justificación: El estudiante mostró interés por resolver problemas lógicos y programar, lo que sugiere afinidad con el desarrollo de software.
+Responde en el siguiente formato:
 
-Ahora genera el resultado para este caso:
+Carrera sugerida: [Nombre de la carrera principal]
 
-${lista}
+Otras opciones relacionadas:
+- [Carrera 1]
+- [Carrera 2]
+
+Justificación:
+[Texto explicando por qué esa carrera encaja con el perfil del estudiante.]
+
+Mejores universidades en Colombia:
+1. [Universidad 1]
+2. [Universidad 2]
+3. [Universidad 3]
+
+Posibles empleos:
+- [Empleo 1]
+- [Empleo 2]
+- [Empleo 3]
 `.trim();
 }
 
-module.exports = construirPrompt; //
+module.exports = construirPrompt;

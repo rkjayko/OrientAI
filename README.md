@@ -29,6 +29,8 @@ kubectl apply -f ollama-deployment.yaml
 
 kubectl apply -f ollama-service.yaml
 
+cd backend
+
 kubectl apply -f backend-deployment.yaml
 
 kubectl apply -f backend-service.yaml

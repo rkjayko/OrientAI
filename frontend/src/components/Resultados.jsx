@@ -57,9 +57,6 @@ function Resultados({ resultado, nombreEstudiante, onVolver }) {
           <Typography variant="h4" component="h1" gutterBottom color="primary">
             Resultado de Orientación Vocacional
           </Typography>
-          <Typography variant="h6" component="h2" sx={{ mb: 3 }}>
-            Para: {nombreEstudiante || 'Estudiante'}
-          </Typography>
           <Typography variant="body1" sx={{ whiteSpace: 'pre-wrap' }}>
             {resultado}
           </Typography>
