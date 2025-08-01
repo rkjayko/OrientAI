@@ -6,6 +6,7 @@ const construirPrompt = require('../ai/construirPrompt');
 
 router.get('/:id', async (req, res) => {
   const estudianteId = req.params.id;
+  console.log("la solicitud fue", req.params)
   console.log(`📥 Solicitud para generar resultado vocacional del estudiante ID: ${estudianteId}`);
 
   try {
@@ -34,8 +35,7 @@ router.get('/:id', async (req, res) => {
     res.json({ respuesta: respuestaIA.trim() });
 
   } catch (error) {
-    console.error('❌ Error generando resultado vocacional:', error.message);
-    console.error(error.stack);
+    console.error(' Error generando resultado vocacional:', error.message);
     res.status(500).json({ error: error.message });
   }
 });

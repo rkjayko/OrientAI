@@ -36,5 +36,16 @@ CREATE TABLE IF NOT EXISTS resultados_vocacionales (
 
 -- Insertar preguntas base. Usamos INSERT IGNORE para evitar errores si se ejecuta más de una vez.
 INSERT IGNORE INTO `preguntas` (`id`, `texto`, `categoria`) VALUES
-(1, 'Disfrutas trabajando con números y datos', 'Realista')
-
+(1, 'Disfrutas trabajando con números y datos', 'Realista'),
+(1, '¿Disfrutas trabajando con números y datos?', 'Realista'),
+(2, '¿Te gusta construir o reparar cosas con tus manos?', 'Realista'),
+(3, '¿Prefieres actividades al aire libre?', 'Realista'),
+(4, '¿Te consideras una persona curiosa y analítica?', 'Investigador'),
+(5, '¿Disfrutas resolviendo problemas complejos y abstractos?', 'Investigador'),
+(6, '¿Te gusta leer sobre temas científicos o técnicos?', 'Investigador'),
+(7, '¿Tienes una gran imaginación?', 'Artístico'),
+(8, '¿Te gusta expresarte a través del arte, la música o la escritura?', 'Artístico'),
+(9, '¿Prefieres trabajos que no tengan una rutina estricta?', 'Artístico'),
+(10, '¿Disfrutas ayudando o enseñando a otros?', 'Social'),
+(11, '¿Eres bueno escuchando y entendiendo los problemas de los demás?', 'Social'),
+(12, '¿Te gusta trabajar en equipo?', 'Social');

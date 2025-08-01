@@ -4,18 +4,10 @@ import { PictureAsPdf } from '@mui/icons-material';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
-// Función para corregir la codificación de caracteres desde el frontend.
-function decodeUtf8FromLatin1(str) {
-  if (!str) return '';
-  // Convierte el string (interpretado como latin1) a bytes y luego lo decodifica como UTF-8.
-  const bytes = new Uint8Array([...str].map(c => c.charCodeAt(0)));
-  return new TextDecoder('utf-8').decode(bytes);
-}
-
 function Resultados({ resultado, nombreEstudiante, onVolver }) {
   const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
   const [pdfError, setPdfError] = useState('');
-  const resultsRef = useRef(null); // Ref para el contenido a exportar
+  const resultsRef = useRef(null);
 
   const handleDownloadPDF = async () => {
     if (!resultsRef.current) return;
@@ -69,7 +61,7 @@ function Resultados({ resultado, nombreEstudiante, onVolver }) {
             Para: {nombreEstudiante || 'Estudiante'}
           </Typography>
           <Typography variant="body1" sx={{ whiteSpace: 'pre-wrap' }}>
-            {decodeUtf8FromLatin1(resultado)}
+            {resultado}
           </Typography>
         </CardContent>
       </Card>

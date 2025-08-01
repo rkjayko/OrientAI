@@ -32,11 +32,11 @@ async function startServer() {
     // 4. Iniciar el servidor solo después de una conexión exitosa a la BD.
     const PORT = process.env.PORT || 3000;
     app.listen(PORT, '0.0.0.0', () =>
-      console.log(`✅ Servidor corriendo en puerto ${PORT}`)
+      console.log(`Servidor corriendo en puerto ${PORT}`)
     );
   } catch (error) {
-    console.error('❌ Falló el inicio del servidor:', error.message);
-    process.exit(1); // Termina el proceso si la BD no está disponible.
+    console.error('Falló el inicio del servidor:', error.message);
+    process.exit(1);
   }
 }
 

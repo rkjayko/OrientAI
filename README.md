@@ -8,43 +8,46 @@
 ✅ 2. Instalar dependencias del backend
 
 cd backend
+
 npm install
 
-✅ 3. Volver a construir la imagen del backend
-Estando en el directorio raíz del proyecto (/OrientAI):
+✅ 3. Volver a construir la imagen del backend. Estando en el directorio raíz del proyecto (/OrientAI):
 
 docker build -t orientai-backend ./backend
 
-✅ 6. Aplicar los archivos de Kubernetes (YAMLs)
+✅ 4. Aplicar los archivos de Kubernetes (YAMLs)
 
 kubectl apply -f mysql-init-configmap.yaml
+
 kubectl apply -f mysql-deployment.yaml
 
-kubectl apply -f backend-deployment.yaml
-kubectl apply -f backend-service.yaml
-
 kubectl apply -f mysql-secret.yaml 
+
 kubectl apply -f mysql-service.yaml
 
 kubectl apply -f ollama-deployment.yaml
+
 kubectl apply -f ollama-service.yaml
 
-✅ 7. Verifica que los pods estén ejecutándose
+kubectl apply -f backend-deployment.yaml
+
+kubectl apply -f backend-service.yaml
+
+
+✅ 5. Verifica que los pods estén ejecutándose
 
 kubectl get pods
-Todos deben estar en estado Running. Si alguno falla, revisa con:
 
 kubectl logs deployment/backend
 
-✅ 8. Redirige el puerto del backend al host local
-Esto te permitirá comunicar el frontend con el backend:
+✅ 8. Redirige el puerto del backend al host local(Esto te permitirá comunicar el frontend con el backend)
 
 kubectl port-forward service/backend-service 3000:3000
 
-🧪 FRONTEND - MODO DESARROLLO
 ✅ 9. Instalar dependencias del frontend
 
-cd ../frontend
+cd frontend
+
 npm install
 
 ✅ 10. Ejecutar el frontend
@@ -52,9 +55,11 @@ npm install
 npm run dev
 
 Abre el navegador en:
+
 http://localhost:5173
 
 ✅ 12. Verifica el flujo completo
+
 Ingresa una pregunta como: "¿Qué carrera me recomiendas si me gusta la biología?"
 
 El backend debe responder correctamente usando el modelo IA desde Ollama.
