@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -19,6 +20,10 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "vite": "^5.0.0"
+    "@testing-library/jest-dom": "^6.4.8",
+    "@testing-library/react": "^16.0.0",
+    "jsdom": "^24.1.1",
+    "vite": "^5.0.0",
+    "vitest": "^2.0.4"
   }
 }
