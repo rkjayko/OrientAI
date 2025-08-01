@@ -1,6 +1,5 @@
 <img width="839" height="389" alt="image" src="https://github.com/user-attachments/assets/4c2e36d1-f34a-483c-ba19-00fa9adb86bb" />
 
-
 # OrientAi
 🚀 PASO A PASO PARA SUBIR TODO EL PROYECTO ORIENTAI DESDE CERO
 ✅ 1. Docker desktop habilitado con kubernetes
@@ -66,4 +65,8 @@ Ingresa una pregunta como: "¿Qué carrera me recomiendas si me gusta la biolog�
 
 El backend debe responder correctamente usando el modelo IA desde Ollama.
 
+
+## Versiones futuras :
+
+ - Agregar un LLM mas potente puede ser entrenado en sageMaker, LLMRanker o uno in-house
 
