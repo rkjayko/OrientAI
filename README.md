@@ -12,6 +12,7 @@ npm install
 
 ✅ 3. Volver a construir la imagen del backend. Estando en el directorio raíz del proyecto (/OrientAI):
 
+& minikube -p minikube docker-env | Invoke-Expression
 docker build -t orientai-backend ./backend
 
 ✅ 4. Aplicar los archivos de Kubernetes (YAMLs)
